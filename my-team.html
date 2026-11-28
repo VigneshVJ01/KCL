@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Team — KCL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="preconnect" href="https://oaznjrsrkrxnsvqdrsxb.supabase.co" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" /></noscript>
+  <link rel="stylesheet" href="styles.css" />
+  <script>try{var __s=JSON.parse(localStorage.getItem("kclwind_session")||"null");if(!__s||__s.role!=="owner")document.documentElement.classList.add("no-owner-links")}catch(e){document.documentElement.classList.add("no-owner-links")}</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" style="text-decoration:none;color:inherit">
+        <img class="brand-logo brand-logo-img" src="img/logo.jpeg" alt="KCL" />
+        <div>
+          <h1 class="brand-name">KCL</h1>
+          <p class="brand-tag">Cricket Auction Portal</p>
+        </div>
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="tournament.html">Tournament</a>
+        <a href="auction.html">Auction</a>
+        <a href="matches.html">Matches</a>
+        <a href="standings.html">Standings</a>
+        <a href="my-tournament.html">My Tournament</a>
+        <a href="my-auction.html">My Auction</a>
+        <a href="teams.html">Teams</a>
+        <a href="players.html">Players</a>
+        <a href="links.html">Links</a>
+        <a href="notes.html">Notes</a>
+        <a href="my-team.html" class="active">My Team</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card accent-card">
+      <div class="section-head">
+        <h2>My Team</h2>
+      </div>
+      <div id="my-team-header" class="my-team-header"></div>
+    </section>
+
+    <section class="card">
+      <div class="section-head">
+        <h2>My Players</h2>
+        <span id="my-team-count" class="badge"></span>
+      </div>
+      <div id="my-team-players" class="item-list"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> KCL Cricket Auction. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teams — KCL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="preconnect" href="https://oaznjrsrkrxnsvqdrsxb.supabase.co" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" /></noscript>
+  <link rel="stylesheet" href="styles.css" />
+  <script>try{var __s=JSON.parse(localStorage.getItem("kclwind_session")||"null");if(!__s||__s.role!=="owner")document.documentElement.classList.add("no-owner-links")}catch(e){document.documentElement.classList.add("no-owner-links")}</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" style="text-decoration:none;color:inherit">
+        <img class="brand-logo brand-logo-img" src="img/logo.jpeg" alt="KCL" />
+        <div>
+          <h1 class="brand-name">KCL</h1>
+          <p class="brand-tag">Cricket Auction Portal</p>
+        </div>
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="tournament.html">Tournament</a>
+        <a href="auction.html">Auction</a>
+        <a href="matches.html">Matches</a>
+        <a href="standings.html">Standings</a>
+        <a href="my-auction.html">My Auction</a>
+        <a href="teams.html" class="active">Teams</a>
+        <a href="players.html">Players</a>
+        <a href="links.html">Links</a>
+        <a href="notes.html">Notes</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="teams" class="card">
+      <div class="section-head">
+        <h2>Teams</h2>
+        <button class="btn btn-primary" id="add-teams">+ Add Team</button>
+      </div>
+      <div id="teams-list" class="item-list"></div>
+      <form id="teams-form" class="edit-form hidden">
+        <label>Team Name<input type="text" name="name" required /></label>
+        <label>Owner / Captain<input type="text" name="owner" /></label>
+        <label>Email Id<input type="email" name="email" placeholder="owner@example.com" /></label>
+        <label>Associated Tournament
+          <select name="tournament"><option value="">— None —</option></select>
+        </label>
+        <label>Associated Auction
+          <select name="auction"><option value="">— None —</option></select>
+        </label>
+        <label>Budget (₹)<input type="number" name="budget" min="0" value="0" /></label>
+        <label>Purse (₹)<input type="number" name="purse" min="0" value="0" /></label>
+        <label>Status
+          <select name="status">
+            <option>Registered</option><option>Confirmed</option><option>Pending</option><option>Withdrawn</option>
+          </select>
+        </label>
+        <label>Team Logo
+          <input type="file" name="logo" accept="image/*" />
+        </label>
+        <img id="logo-preview" class="photo-preview hidden" alt="Team logo preview" />
+        <label>Owner / Captain Photo
+          <input type="file" name="ownerPhoto" accept="image/*" />
+        </label>
+        <img id="owner-photo-preview" class="photo-preview hidden" alt="Captain photo preview" />
+        <label>Icon Player<input type="text" name="iconPlayer" placeholder="Icon player name" /></label>
+        <label>Icon Player Photo
+          <input type="file" name="iconPlayerPhoto" accept="image/*" />
+        </label>
+        <img id="icon-player-photo-preview" class="photo-preview hidden" alt="Icon player photo preview" />
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="button" class="btn btn-cancel" data-cancel="teams">Cancel</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card owner-only-section">
+      <div class="section-head">
+        <h2>My Team</h2>
+      </div>
+      <div id="my-team-header" class="my-team-header"></div>
+    </section>
+
+    <section class="card owner-only-section">
+      <div class="section-head">
+        <h2>My Players</h2>
+        <span id="my-team-count" class="badge"></span>
+      </div>
+      <div id="my-team-players" class="item-list"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> KCL Cricket Auction. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

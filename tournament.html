@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tournament — KCL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="preconnect" href="https://oaznjrsrkrxnsvqdrsxb.supabase.co" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" /></noscript>
+  <link rel="stylesheet" href="styles.css" />
+  <script>try{var __s=JSON.parse(localStorage.getItem("kclwind_session")||"null");if(!__s||__s.role!=="owner")document.documentElement.classList.add("no-owner-links")}catch(e){document.documentElement.classList.add("no-owner-links")}</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" style="text-decoration:none;color:inherit">
+        <img class="brand-logo brand-logo-img" src="img/logo.jpeg" alt="KCL" />
+        <div>
+          <h1 class="brand-name">KCL</h1>
+          <p class="brand-tag">Cricket Auction Portal</p>
+        </div>
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="tournament.html" class="active">Tournament</a>
+        <a href="auction.html">Auction</a>
+        <a href="matches.html">Matches</a>
+        <a href="standings.html">Standings</a>
+        <a href="my-auction.html">My Auction</a>
+        <a href="teams.html">Teams</a>
+        <a href="players.html">Players</a>
+        <a href="links.html">Links</a>
+        <a href="notes.html">Notes</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="tournament" class="card">
+      <div class="section-head">
+        <h2>Tournament Details</h2>
+        <button class="btn btn-edit" data-edit="tournament">Edit</button>
+      </div>
+      <div id="tournament-view" class="detail-grid">
+        <div class="detail"><span class="label">Tournament Name</span><span class="value" data-field="name">—</span></div>
+        <div class="detail"><span class="label">Ground</span><span class="value" data-field="ground">—</span></div>
+        <div class="detail"><span class="label">Date &amp; Time</span><span class="value" data-field="datetime">—</span></div>
+      </div>
+      <form id="tournament-form" class="edit-form hidden">
+        <label>Tournament Name<input type="text" name="name" required /></label>
+        <label>Ground<input type="text" name="ground" required /></label>
+        <label>Date &amp; Time<input type="datetime-local" name="datetime" required /></label>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="button" class="btn btn-cancel" data-cancel="tournament">Cancel</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="my-tournament" class="card owner-only-section">
+      <div class="section-head">
+        <h2>My Tournament</h2>
+        <button class="btn btn-edit" data-edit="my-tournament">Edit</button>
+      </div>
+      <div id="my-tournament-view" class="detail-grid">
+        <div class="detail"><span class="label">My Team</span><span class="value" data-field="team">—</span></div>
+        <div class="detail"><span class="label">Captain</span><span class="value" data-field="captain">—</span></div>
+        <div class="detail"><span class="label">Budget (₹)</span><span class="value" data-field="budget">—</span></div>
+        <div class="detail"><span class="label">Associated Tournament</span><span class="value" data-field="tournament">—</span></div>
+        <div class="detail"><span class="label">Associated Auction</span><span class="value" data-field="auction">—</span></div>
+      </div>
+      <form id="my-tournament-form" class="edit-form hidden">
+        <label>My Team<input type="text" name="team" required /></label>
+        <label>Captain<input type="text" name="captain" /></label>
+        <label>Budget (₹)<input type="number" name="budget" min="0" value="0" /></label>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="button" class="btn btn-cancel" data-cancel="my-tournament">Cancel</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> KCL Cricket Auction. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

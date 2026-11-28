@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Auction — KCL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="preconnect" href="https://oaznjrsrkrxnsvqdrsxb.supabase.co" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" /></noscript>
+  <link rel="stylesheet" href="styles.css" />
+  <script>try{var __s=JSON.parse(localStorage.getItem("kclwind_session")||"null");if(!__s||__s.role!=="owner")document.documentElement.classList.add("no-owner-links")}catch(e){document.documentElement.classList.add("no-owner-links")}</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" style="text-decoration:none;color:inherit">
+        <img class="brand-logo brand-logo-img" src="img/logo.jpeg" alt="KCL" />
+        <div>
+          <h1 class="brand-name">KCL</h1>
+          <p class="brand-tag">Cricket Auction Portal</p>
+        </div>
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="tournament.html">Tournament</a>
+        <a href="auction.html" class="active">Auction</a>
+        <a href="matches.html">Matches</a>
+        <a href="standings.html">Standings</a>
+        <a href="my-auction.html">My Auction</a>
+        <a href="teams.html">Teams</a>
+        <a href="players.html">Players</a>
+        <a href="links.html">Links</a>
+        <a href="notes.html">Notes</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="auction" class="card">
+      <div class="section-head">
+        <h2>Auction Details</h2>
+        <button class="btn btn-edit" data-edit="auction">Edit</button>
+      </div>
+      <div id="auction-view" class="detail-grid">
+        <div class="detail"><span class="label">Auction Name</span><span class="value" data-field="name">—</span></div>
+        <div class="detail"><span class="label">Date &amp; Time</span><span class="value" data-field="datetime">—</span></div>
+        <div class="detail"><span class="label">Associated Tournament</span><span class="value" data-field="tournament">—</span></div>
+      </div>
+      <div class="auction-controls">
+        <span id="live-badge" class="live-badge hidden">● LIVE</span>
+        <button id="start-auction" class="btn btn-live hidden">▶ Start Auction</button>
+        <button id="end-auction" class="btn btn-end hidden">■ End Auction</button>
+        <button id="reset-auction" class="btn btn-cancel hidden">↻ Reset Auction</button>
+        <a href="live.html" class="btn btn-live view-auction-btn hidden">View Auction</a>
+      </div>
+
+      <!-- Full-screen auction stage (admin) -->
+      <div id="auction-overlay" class="auction-overlay hidden">
+        <div class="auction-stage">
+          <div class="stage-layout">
+            <div class="stage-main">
+              <div class="stage-top">
+                <span class="live-badge">● LIVE</span>
+                <span id="ao-counter" class="stage-counter"></span>
+              </div>
+              <div class="player-photo-wrap">
+                <img id="ao-photo" class="player-photo" alt="Player" />
+              </div>
+              <h2 id="ao-name" class="stage-name">—</h2>
+              <div id="ao-details" class="stage-details"></div>
+              <div class="stage-actions">
+                <button id="ao-sold" class="btn btn-sold">SOLD ✓</button>
+                <button id="ao-unsold" class="btn btn-unsold">Unsold</button>
+                <button id="ao-undo-sale" class="btn btn-cancel hidden">↩ Undo Last Sale</button>
+                <button id="ao-close" class="btn btn-end">End Auction</button>
+              </div>
+              <div id="ao-team-picker" class="team-picker hidden">
+                <label for="ao-team-select">Sold to team:</label>
+                <select id="ao-team-select"></select>
+                <label for="ao-price">Sold at (₹):</label>
+                <input id="ao-price" type="number" min="0" class="ao-price-input" />
+                <div id="ao-price-error" class="price-error hidden"></div>
+                <button id="ao-confirm-sold" class="btn btn-sold">Confirm Sale</button>
+              </div>
+              <div id="ao-confetti" class="confetti-layer hidden"></div>
+            </div>
+            <aside class="squad-panel">
+              <div class="squad-head">
+                <span class="squad-title">Team Squad</span>
+                <select id="ao-squad-team" class="squad-team-select"></select>
+              </div>
+              <div class="squad-table-wrap">
+                <table class="squad-table">
+                  <thead>
+                    <tr><th>#</th><th>Player Name</th><th>Type</th><th>Price</th></tr>
+                  </thead>
+                  <tbody id="ao-squad-body"></tbody>
+                </table>
+              </div>
+              <div class="squad-foot">
+                <span id="ao-squad-purse"></span>
+                <span id="ao-squad-count"></span>
+              </div>
+            </aside>
+          </div>
+        </div>
+        <div id="ao-message" class="ao-message hidden"></div>
+      </div>
+      <form id="auction-form" class="edit-form hidden">
+        <label>Auction Name<input type="text" name="name" required /></label>
+        <label>Date &amp; Time<input type="datetime-local" name="datetime" required /></label>
+        <label>Associated Tournament
+          <select name="tournament"><option value="">— None —</option></select>
+        </label>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="button" class="btn btn-cancel" data-cancel="auction">Cancel</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> KCL Cricket Auction. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

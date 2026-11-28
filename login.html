@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — KCL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="preconnect" href="https://oaznjrsrkrxnsvqdrsxb.supabase.co" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" /></noscript>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="login-body">
+  <main class="login-wrap">
+    <div class="login-card">
+      <img class="brand-logo brand-logo-img login-logo" src="img/logo.jpeg" alt="KCL" />
+      <h1 class="login-title">KCL</h1>
+      <p class="login-sub">Cricket Auction Portal — Sign in to continue</p>
+
+      <form id="login-form" class="login-form">
+        <label class="login-label">Email Address
+          <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email" />
+        </label>
+        <p id="login-error" class="login-error hidden"></p>
+        <button type="submit" class="btn btn-primary login-btn">Sign In</button>
+      </form>
+
+      <div class="login-divider"><span>or</span></div>
+
+      <button type="button" id="guest-btn" class="btn btn-guest">Continue as Audience</button>
+
+      <p class="login-hint">Admin &amp; Team Owners sign in with their registered email. Audience can browse without signing in.</p>
+    </div>
+  </main>
+
+  <script>
+    // Registered accounts (demo — move to backend/database later)
+    const ADMIN_EMAIL = "kcladmin@gmail.com";
+    const OWNER_EMAILS = [
+      "vignesh12@gmail.com",
+      "shashi34@gmail.com",
+      "aravinth56@gmail.com",
+      "dilip78@gmail.com",
+    ];
+
+    const SESSION_KEY = "kclwind_session";
+
+    // Already logged in? Go straight to home.
+    try {
+      if (localStorage.getItem(SESSION_KEY)) location.href = "index.html";
+    } catch {}
+
+    function signIn(role, email) {
+      const name = email
+        ? email.split("@")[0].replace(/[._-]/g, " ").replace(/\b\w/g, c => c.toUpperCase())
+        : "Audience";
+      localStorage.setItem(SESSION_KEY, JSON.stringify({ role, name, email: email || "" }));
+      location.href = "index.html";
+    }
+
+    document.getElementById("login-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const email = document.getElementById("email").value.trim().toLowerCase();
+      const errorEl = document.getElementById("login-error");
+
+      if (email === ADMIN_EMAIL) {
+        signIn("admin", email);
+      } else if (OWNER_EMAILS.includes(email)) {
+        signIn("owner", email);
+      } else {
+        errorEl.textContent = "This email is not registered. Team Owners & Admin must use their registered email, or continue as Audience.";
+        errorEl.classList.remove("hidden");
+      }
+    });
+
+    document.getElementById("guest-btn").addEventListener("click", () => signIn("audience", ""));
+  </script>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> KCL Cricket Auction. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>

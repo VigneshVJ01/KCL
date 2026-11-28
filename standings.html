@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Standings — KCL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="preconnect" href="https://oaznjrsrkrxnsvqdrsxb.supabase.co" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" /></noscript>
+  <link rel="stylesheet" href="styles.css" />
+  <script>try{var __s=JSON.parse(localStorage.getItem("kclwind_session")||"null");if(!__s||__s.role!=="owner")document.documentElement.classList.add("no-owner-links")}catch(e){document.documentElement.classList.add("no-owner-links")}</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" style="text-decoration:none;color:inherit">
+        <img class="brand-logo brand-logo-img" src="img/logo.jpeg" alt="KCL" />
+        <div>
+          <h1 class="brand-name">KCL</h1>
+          <p class="brand-tag">Cricket Auction Portal</p>
+        </div>
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="tournament.html">Tournament</a>
+        <a href="auction.html">Auction</a>
+        <a href="matches.html">Matches</a>
+        <a href="standings.html" class="active">Standings</a>
+        <a href="my-auction.html">My Auction</a>
+        <a href="teams.html">Teams</a>
+        <a href="players.html">Players</a>
+        <a href="links.html">Links</a>
+        <a href="notes.html">Notes</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="standings-tabs">
+      <button class="standings-tab active" data-tab="points">Points Table</button>
+      <button class="standings-tab" data-tab="motm">Man of the Matches</button>
+      <button class="standings-tab" data-tab="bat">Batsman of the Tournament</button>
+      <button class="standings-tab" data-tab="bowl">Bowler of the Tournament</button>
+      <button class="standings-tab" data-tab="allround">Best Allrounder</button>
+      <button class="standings-tab" data-tab="icon">Best Icon</button>
+    </div>
+
+    <section id="tab-points" class="card">
+      <div class="section-head"><h2>Points Table</h2><span class="item-sub">League matches only</span></div>
+      <div id="points-table"></div>
+      <div id="champion-banner" class="champion-banner hidden"></div>
+      <div class="section-head bracket-head"><h2>Playoffs</h2></div>
+      <div id="playoff-bracket" class="bracket"></div>
+    </section>
+
+    <section id="tab-motm" class="card hidden">
+      <div class="section-head"><h2>Man of the Matches</h2></div>
+      <div id="motm-list" class="item-list"></div>
+    </section>
+
+    <section id="tab-bat" class="card hidden">
+      <div class="section-head"><h2>Batsman of the Tournament</h2></div>
+      <div id="bat-table"></div>
+    </section>
+
+    <section id="tab-bowl" class="card hidden">
+      <div class="section-head"><h2>Bowler of the Tournament</h2></div>
+      <div id="bowl-table"></div>
+    </section>
+
+    <section id="tab-allround" class="card hidden">
+      <div class="section-head"><h2>Best Allrounder</h2></div>
+      <div id="allround-table"></div>
+    </section>
+
+    <section id="tab-icon" class="card hidden">
+      <div class="section-head"><h2>Best Icon</h2></div>
+      <div id="icon-table"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> KCL Cricket Auction. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
